@@ -1,0 +1,42 @@
+---
+title: "{{TITULO}}"
+author:
+  - name: "{{AUTOR}}"
+    affiliation: "Escuela Politecnica Nacional"
+date: "{FECHA}}"
+date-format: "DD [de] MMMM, YYYY"
+
+format:
+  html:
+    toc: true
+    toc-title: "Contenido"
+    toc-location: left
+    number-sections: true
+    code-fold: true
+    code-copy: true
+    theme: united
+    highlight-style: monokai
+    
+lang: es
+
+---
+
+## Descripción de la Sesion
+
+{{DESCRIPCION}}
+
+## Información del Entorno
+
+- **Sistema:** {{SISTEMA_OS}}
+- **Usuario:** {{USUARIO}}
+- **Fecha de captura:** {{FECHA}}
+- **Duración de sesión:** {{DURACION}}
+
+## Comandos Ejecutados
+
+{{COMANDOS}}
+
+## Resumen
+
+- Total de comandos ejecutados: {{TOTAL_COMANDOS}}
+- Errores encontrados: {{TOTAL_ERRORES}}
