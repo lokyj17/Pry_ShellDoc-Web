@@ -1,0 +1,5 @@
+1|vianca|ls -la /var/log|2
+2|admin|grep -r "error" /var/log/syslog|5
+3|vianca|gcc -o programa src/main.c|4
+4|root|systemctl restart nginx|3
+5|invitado|python3 src/analisis.py|8
