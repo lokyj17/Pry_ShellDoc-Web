@@ -3084,7 +3084,6 @@ vertical-align: -.125em;
   <li><a href="#comando-2" id="toc-comando-2" class="nav-link" data-scroll-target="#comando-2"><span class="header-section-number">3.2</span> Comando #2</a></li>
   <li><a href="#comando-3" id="toc-comando-3" class="nav-link" data-scroll-target="#comando-3"><span class="header-section-number">3.3</span> Comando #3</a></li>
   <li><a href="#comando-4" id="toc-comando-4" class="nav-link" data-scroll-target="#comando-4"><span class="header-section-number">3.4</span> Comando #4</a></li>
-  <li><a href="#comando-5" id="toc-comando-5" class="nav-link" data-scroll-target="#comando-5"><span class="header-section-number">3.5</span> Comando #5</a></li>
   </ul></li>
   <li><a href="#control-de-procesos-módulo-fork" id="toc-control-de-procesos-módulo-fork" class="nav-link" data-scroll-target="#control-de-procesos-módulo-fork"><span class="header-section-number">4</span> Control de Procesos (Módulo fork)</a></li>
   <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">5</span> Resumen</a></li>
@@ -3142,7 +3141,7 @@ vertical-align: -.125em;
 <ul>
 <li><strong>Sistema:</strong> Linux 6.8.0-111-generic x86_64</li>
 <li><strong>Usuario:</strong> loky</li>
-<li><strong>Fecha de captura:</strong> 01/06/2026 04:24:56</li>
+<li><strong>Fecha de captura:</strong> 01/06/2026 04:54:55</li>
 <li><strong>Duración de sesión:</strong> {{DURACION}}</li>
 </ul>
 </section>
@@ -3160,15 +3159,15 @@ vertical-align: -.125em;
 <tbody>
 <tr class="odd">
 <td>Usuario</td>
-<td><code>vianca</code></td>
+<td><code>loky</code></td>
 </tr>
 <tr class="even">
 <td>Tiempo</td>
-<td>2 seg</td>
+<td>1 seg</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span> /var/log</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ps</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="comando-2" class="level3" data-number="3.2">
@@ -3183,15 +3182,15 @@ vertical-align: -.125em;
 <tbody>
 <tr class="odd">
 <td>Usuario</td>
-<td><code>admin</code></td>
+<td><code>loky</code></td>
 </tr>
 <tr class="even">
 <td>Tiempo</td>
-<td>5 seg</td>
+<td>1 seg</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-r</span> <span class="st">&quot;error&quot;</span> /var/log/syslog</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ll</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="comando-3" class="level3" data-number="3.3">
@@ -3206,15 +3205,15 @@ vertical-align: -.125em;
 <tbody>
 <tr class="odd">
 <td>Usuario</td>
-<td><code>vianca</code></td>
+<td><code>loky</code></td>
 </tr>
 <tr class="even">
 <td>Tiempo</td>
-<td>4 seg</td>
+<td>1 seg</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gcc</span> <span class="at">-o</span> programa src/main.c</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="comando-4" class="level3" data-number="3.4">
@@ -3229,52 +3228,29 @@ vertical-align: -.125em;
 <tbody>
 <tr class="odd">
 <td>Usuario</td>
-<td><code>root</code></td>
+<td><code>loky</code></td>
 </tr>
 <tr class="even">
 <td>Tiempo</td>
-<td>3 seg</td>
+<td>1 seg</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> restart nginx</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-<section id="comando-5" class="level3" data-number="3.5">
-<h3 data-number="3.5" class="anchored" data-anchor-id="comando-5"><span class="header-section-number">3.5</span> Comando #5</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Campo</th>
-<th>Valor</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Usuario</td>
-<td><code>invitado</code></td>
-</tr>
-<tr class="even">
-<td>Tiempo</td>
-<td>8 seg</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> src/analisis.py</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ll</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 </section>
 <section id="control-de-procesos-módulo-fork" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="control-de-procesos-módulo-fork"><span class="header-section-number">4</span> Control de Procesos (Módulo fork)</h2>
 <ul>
-<li><strong>PID del Proceso:</strong> <code>12374</code></li>
+<li><strong>PID del Proceso:</strong> <code>13505</code></li>
 <li><strong>PPID del Padre:</strong> <code>1443</code></li>
 </ul>
 </section>
 <section id="resumen" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="resumen"><span class="header-section-number">5</span> Resumen</h2>
 <ul>
-<li>Total de comandos ejecutados: 5</li>
+<li>Total de comandos ejecutados: 4</li>
 <li>Errores encontrados: {{TOTAL_ERRORES}}</li>
 </ul>
 </section>
