@@ -24,7 +24,7 @@ typedef struct {
     char titulo[256];
     char autor[256];
     char fecha[64];
-    char sistema_os[128];
+    char sistema_os[256];
     char usuario_sistema[64];
 } MetadatosDoc;
 
