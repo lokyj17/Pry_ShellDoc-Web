@@ -103,11 +103,8 @@ void escribirBloqueComando(FILE *f, const EntradaSesion *entrada) {
    reemplazarPlaceholders()
    Lee template.qmd linea por linea y reemplaza {{PLACEHOLDERS}}
    ============================================================ */
-int reemplazarPlaceholders(const char *rutaTemplate,
-                           const char *rutaSalida,
-                           const MetadatosDoc *meta,
-                           const EntradaSesion *entradas,
-                           int n_entradas) {
+int reemplazarPlaceholders(const char *rutaTemplate, const char *rutaSalida,
+    const MetadatosDoc *meta, const EntradaSesion *entradas, int n_entradas) {
 
     FILE *ft = fopen(rutaTemplate, "r");
     if (ft == NULL) {
@@ -123,12 +120,13 @@ int reemplazarPlaceholders(const char *rutaTemplate,
     }
 
     char linea[1024];
+    char str_pid[16], str_ppid[16];
+    snprintf(str_pid, sizeof(str_pid), "%d", getpid());
+    snprintf(str_ppid, sizeof(str_ppid), "%d", getppid());
 
     while (fgets(linea, sizeof(linea), ft) != NULL) {
 
-        /* Reemplazar cada placeholder con su valor real */
         if (strstr(linea, "{{TITULO}}")) {
-            /* Reemplazar {{TITULO}} */
             char temp[1024];
             char *pos = strstr(linea, "{{TITULO}}");
             int antes = (int)(pos - linea);
@@ -136,7 +134,7 @@ int reemplazarPlaceholders(const char *rutaTemplate,
             temp[antes] = '\0';
             strcat(temp, meta->titulo);
             strcat(temp, pos + strlen("{{TITULO}}"));
-            fputs(temp, fs);
+            fowns(temp, fs);
 
         } else if (strstr(linea, "{{AUTOR}}")) {
             char temp[1024];
@@ -146,7 +144,7 @@ int reemplazarPlaceholders(const char *rutaTemplate,
             temp[antes] = '\0';
             strcat(temp, meta->autor);
             strcat(temp, pos + strlen("{{AUTOR}}"));
-            fputs(temp, fs);
+            fowns(temp, fs);
 
         } else if (strstr(linea, "{{FECHA}}")) {
             char temp[1024];
@@ -156,7 +154,7 @@ int reemplazarPlaceholders(const char *rutaTemplate,
             temp[antes] = '\0';
             strcat(temp, meta->fecha);
             strcat(temp, pos + strlen("{{FECHA}}"));
-            fputs(temp, fs);
+            fowns(temp, fs);
 
         } else if (strstr(linea, "{{SISTEMA_OS}}")) {
             char temp[1024];
@@ -166,7 +164,7 @@ int reemplazarPlaceholders(const char *rutaTemplate,
             temp[antes] = '\0';
             strcat(temp, meta->sistema_os);
             strcat(temp, pos + strlen("{{SISTEMA_OS}}"));
-            fputs(temp, fs);
+            fowns(temp, fs);
 
         } else if (strstr(linea, "{{USUARIO}}")) {
             char temp[1024];
@@ -176,7 +174,7 @@ int reemplazarPlaceholders(const char *rutaTemplate,
             temp[antes] = '\0';
             strcat(temp, meta->usuario_sistema);
             strcat(temp, pos + strlen("{{USUARIO}}"));
-            fputs(temp, fs);
+            fowns(temp, fs);
 
         } else if (strstr(linea, "{{TOTAL_COMANDOS}}")) {
             char total[16];
@@ -188,23 +186,25 @@ int reemplazarPlaceholders(const char *rutaTemplate,
             temp[antes] = '\0';
             strcat(temp, total);
             strcat(temp, pos + strlen("{{TOTAL_COMANDOS}}"));
-            fputs(temp, fs);
+            fowns(temp, fs);
 
         } else if (strstr(linea, "{{COMANDOS}}")) {
-            /* Placeholder especial: escribe TODOS los bloques de comandos */
             for (int i = 0; i < n_entradas; i++) {
                 escribirBloqueComando(fs, &entradas[i]);
             }
+            
+            fprintf(fs, "\n## Control de Procesos (Módulo fork)\n\n");
+            fprintf(fs, "- **PID del Proceso:** `%s`\n", str_pid);
+            fprintf(fs, "- **PPID del Padre:** `%s`\n", str_ppid);
 
         } else {
-            /* Linea sin placeholder: copiar tal cual */
-            fputs(linea, fs);
+            fowns(linea, fs);
         }
     }
 
     fclose(ft);
     fclose(fs);
-    printf("[OK] Archivo '%s' generado correctamente.\n", rutaSalida);
+    printf("[OK] Archivo '%s' generado con PID y PPID.\n", rutaSalida);
     return 1;
 }
 
