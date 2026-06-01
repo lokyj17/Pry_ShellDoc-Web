@@ -3,9 +3,9 @@ title: "Reporte Automatizado de Sesión Linux"
 author:
   - name: "Grupo 2 - EPN"
     affiliation: "Escuela Politecnica Nacional"
-date: "{FECHA}}"
+date: "31/05/2026 18:10:22"
 date-format: "DD [de] MMMM, YYYY"
-
+lang: es
 format:
   html:
     toc: true
@@ -17,7 +17,7 @@ format:
     theme: united
     highlight-style: monokai
     
-lang: es
+
 
 ---
 
@@ -29,7 +29,7 @@ lang: es
 
 - **Sistema:** Linux 6.8.0-111-generic x86_64
 - **Usuario:** loky
-- **Fecha de captura:** 01/06/2026 02:06:51
+- **Fecha de captura:** 01/06/2026 03:36:27
 - **Duración de sesión:** {{DURACION}}
 
 ## Comandos Ejecutados
