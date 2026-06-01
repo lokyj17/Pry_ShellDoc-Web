@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
     }
 
     printf("\nIniciando Fase 5 (Renderizado de Quarto a HTML)...\n");
-    int resultado_render = system("quarto render ../quarto/informacion.qmd --to html");
+    int resultado_render = system("quarto render ../quarto/informacion.qmd --to html && mv ../quarto/informacion.html ../docs/index.html");
 
     if (resultado_render == 0) {
         printf("\n¡EJECUTADO CON ÉXITO!\n");
