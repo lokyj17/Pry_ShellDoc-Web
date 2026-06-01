@@ -26,6 +26,9 @@ typedef struct {
     char fecha[64];
     char sistema_os[256];
     char usuario_sistema[64];
+    char descripcion[512];  /* Resumen auto-generado de la sesión       */
+    char duracion[64];      /* Tiempo total: suma de tiempos de cmds    */
+    char total_errores[16]; /* Comandos cuyo tiempo indica posible error */
 } MetadatosDoc;
 
 /* ============================================================
@@ -44,6 +47,14 @@ int cargarSesion(const char *rutaArchivo, EntradaSesion *entradas, int max_entra
  * y los carga en la estructura MetadatosDoc.
  */
 void obtenerMetadatos(MetadatosDoc *meta, const char *titulo, const char *autor);
+
+/*
+ * Calcula duracion total, total_errores y descripcion
+ * a partir de las entradas de sesion. Llamar despues de obtenerMetadatos().
+ */
+void calcularEstadisticas(MetadatosDoc *meta,
+                          const EntradaSesion *entradas,
+                          int n_entradas);
 
 /*
  * Lee template.qmd, reemplaza los placeholders {{...}}

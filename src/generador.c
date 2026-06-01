@@ -84,7 +84,51 @@ void obtenerMetadatos(MetadatosDoc *meta, const char *titulo, const char *autor)
     } else {
         strncpy(meta->usuario_sistema, "desconocido", sizeof(meta->usuario_sistema) - 1);
     }
+    /* Valores por defecto; se sobreescriben en calcularEstadisticas() */
+    strncpy(meta->descripcion,   "Sesion capturada por ShellDoc Web.", sizeof(meta->descripcion)   - 1);
+    strncpy(meta->duracion,      "0 seg", sizeof(meta->duracion)      - 1);
+    strncpy(meta->total_errores, "0",     sizeof(meta->total_errores) - 1);
+
 }
+* ============================================================
+   calcularEstadisticas()
+   Suma los tiempos de ejecucion, detecta errores (tiempo==0)
+   y genera la descripcion automatica de la sesion.
+   ============================================================ */
+void calcularEstadisticas(MetadatosDoc *meta,
+                          const EntradaSesion *entradas,
+                          int n_entradas) {
+    if (n_entradas <= 0) return;
+ 
+    double total_seg = 0.0;
+    int    n_errores = 0;
+ 
+    for (int i = 0; i < n_entradas; i++) {
+        double t = atof(entradas[i].tiempo);
+        total_seg += t;
+        if (t <= 0.0) n_errores++;
+    }
+ 
+    if (total_seg < 60.0) {
+        snprintf(meta->duracion, sizeof(meta->duracion),
+                 "%.0f seg", total_seg);
+    } else {
+        int min = (int)(total_seg / 60);
+        int seg = (int)total_seg % 60;
+        snprintf(meta->duracion, sizeof(meta->duracion),
+                 "%d min %d seg", min, seg);
+    }
+ 
+    snprintf(meta->total_errores, sizeof(meta->total_errores), "%d", n_errores);
+ 
+    snprintf(meta->descripcion, sizeof(meta->descripcion),
+             "Sesion Linux capturada por ShellDoc Web. "
+             "Se ejecutaron %d comando(s) en %s. "
+             "Sistema: %s. Usuario: %s.",
+             n_entradas, meta->duracion,
+             meta->sistema_os, meta->usuario_sistema);
+}
+
 
 /* ============================================================
    escribirBloqueComando()
