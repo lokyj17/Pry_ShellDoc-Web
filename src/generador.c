@@ -104,8 +104,8 @@ void escribirBloqueComando(FILE *f, const EntradaSesion *entrada) {
    reemplazarPlaceholders()
    Lee template.qmd linea por linea y reemplaza {{PLACEHOLDERS}}
    ============================================================ */
-int reemplazarPlaceholders(const char *rutaTemplate, const char *rutaSalida,
-    const MetadatosDoc *meta, const EntradaSesion *entradas, int n_entradas) {
+int reemplazarPlaceholders(const char *rutaTemplate, 
+    const char *rutaSalida, const MetadatosDoc *meta, const EntradaSesion *entradas, int n_entradas) {
 
     FILE *ft = fopen(rutaTemplate, "r");
     if (ft == NULL) {
@@ -135,7 +135,7 @@ int reemplazarPlaceholders(const char *rutaTemplate, const char *rutaSalida,
             temp[antes] = '\0';
             strcat(temp, meta->titulo);
             strcat(temp, pos + strlen("{{TITULO}}"));
-            fowns(temp, fs);
+            fputs(temp, fs);
 
         } else if (strstr(linea, "{{AUTOR}}")) {
             char temp[1024];
@@ -145,7 +145,7 @@ int reemplazarPlaceholders(const char *rutaTemplate, const char *rutaSalida,
             temp[antes] = '\0';
             strcat(temp, meta->autor);
             strcat(temp, pos + strlen("{{AUTOR}}"));
-            fowns(temp, fs);
+            fputs(temp, fs);
 
         } else if (strstr(linea, "{{FECHA}}")) {
             char temp[1024];
@@ -155,7 +155,7 @@ int reemplazarPlaceholders(const char *rutaTemplate, const char *rutaSalida,
             temp[antes] = '\0';
             strcat(temp, meta->fecha);
             strcat(temp, pos + strlen("{{FECHA}}"));
-            fowns(temp, fs);
+            fputs(temp, fs);
 
         } else if (strstr(linea, "{{SISTEMA_OS}}")) {
             char temp[1024];
@@ -165,7 +165,7 @@ int reemplazarPlaceholders(const char *rutaTemplate, const char *rutaSalida,
             temp[antes] = '\0';
             strcat(temp, meta->sistema_os);
             strcat(temp, pos + strlen("{{SISTEMA_OS}}"));
-            fowns(temp, fs);
+            fputs(temp, fs);
 
         } else if (strstr(linea, "{{USUARIO}}")) {
             char temp[1024];
@@ -175,7 +175,7 @@ int reemplazarPlaceholders(const char *rutaTemplate, const char *rutaSalida,
             temp[antes] = '\0';
             strcat(temp, meta->usuario_sistema);
             strcat(temp, pos + strlen("{{USUARIO}}"));
-            fowns(temp, fs);
+            fputs(temp, fs);
 
         } else if (strstr(linea, "{{TOTAL_COMANDOS}}")) {
             char total[16];
@@ -187,7 +187,7 @@ int reemplazarPlaceholders(const char *rutaTemplate, const char *rutaSalida,
             temp[antes] = '\0';
             strcat(temp, total);
             strcat(temp, pos + strlen("{{TOTAL_COMANDOS}}"));
-            fowns(temp, fs);
+            fputs(temp, fs);
 
         } else if (strstr(linea, "{{COMANDOS}}")) {
             for (int i = 0; i < n_entradas; i++) {
@@ -199,7 +199,7 @@ int reemplazarPlaceholders(const char *rutaTemplate, const char *rutaSalida,
             fprintf(fs, "- **PPID del Padre:** `%s`\n", str_ppid);
 
         } else {
-            fowns(linea, fs);
+            fputs(linea, fs);
         }
     }
 
