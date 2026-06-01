@@ -5,7 +5,7 @@ author:
     affiliation: "Escuela Politecnica Nacional"
 date: "{{FECHA}}"
 date-format: "DD [de] MMMM, YYYY"
-
+lang: es
 format:
   html:
     toc: true
@@ -17,7 +17,7 @@ format:
     theme: united
     highlight-style: monokai
     
-lang: es
+
 
 ---
 
