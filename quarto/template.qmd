@@ -3,7 +3,7 @@ title: "{{TITULO}}"
 author:
   - name: "{{AUTOR}}"
     affiliation: "Escuela Politecnica Nacional"
-date: "{FECHA}}"
+date: "{{FECHA}}"
 date-format: "DD [de] MMMM, YYYY"
 
 format:
