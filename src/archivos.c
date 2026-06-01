@@ -1,4 +1,5 @@
 #include "archivos.h"
+#include "procesos.h"
 #include "hilos.h" 
 #include <string.h>
 #include <stdio.h>
@@ -39,9 +40,15 @@ int procesarArchivoSesion(const char *rutaArchivo) {
     // usamos fclose para cerrar el archivo correctamente
     fclose(archivo);
 
-    // Aquí está la conexión: Llamamos a tu módulo de concurrencia
     if (contador > 0) {
         ejecutarProcesamientoConcurrente(registros, contador);
+
+        // === CONEXIÓN CON TU PARTE (Parte 2: Procesos) ===
+        printf("\n[SISTEMA] Iniciando la creacion de procesos con fork()...\n");
+        for (int i = 0; i < contador; i++) {
+            // Llamamos a tu función pasando los datos limpios
+            ejecutarProceso(registros[i].usuario, registros[i].comando, registros[i].tiempo);
+        }
     } else {
         printf("El archivo estaba vacío o el formato era incorrecto.\n");
     }
