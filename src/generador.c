@@ -1,5 +1,6 @@
 #include "generador.h"
 #include "archivos.h"
+#include <unistd.h>
 
 /* Maximo de comandos soportados por sesion */
 #define MAX_ENTRADAS 128
