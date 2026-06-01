@@ -1,317 +1,106 @@
 ---
-title: "Terminal Linux a Quarto: Captura y Documentación de Sesiones de Shell"
-subtitle: "Herramienta académica para registro y presentación de sesiones de terminal"
+title: "Reporte Automatizado de Sesión Linux"
 author:
-  - name: "Grupo 2: Guano William, Guanocunga Alejandro, Guzmán Vianca, Jácome Juan, Jami Alan"
-    affiliation: "Escuela Politécnica Nacional"
-    email: "grupo2@epn.edu.ec"
-date: today
+  - name: "Grupo 2 - EPN"
+    affiliation: "Escuela Politecnica Nacional"
+date: "{FECHA}}"
 date-format: "DD [de] MMMM, YYYY"
-description: |
-  Herramienta que captura, procesa y presenta sesiones de terminal Linux
-  como documentos web estructurados mediante Quarto, registrando comandos
-  y sus salidas en formato Markdown.
-lang: es
-version: "1.0.0"
-status: "En desarrollo"
-category: "Proyecto Académico"
+
 format:
   html:
     toc: true
     toc-title: "Contenido"
-    toc-depth: 3
     toc-location: left
     number-sections: true
     code-fold: true
-    code-tools: true
     code-copy: true
     theme: united
     highlight-style: monokai
-execute:
-  echo: true
-  warning: false
-  message: false
-keywords:
-  - Quarto
-  - Terminal Linux
-  - Shell
-  - Documentación automática
-  - C
-  - Markdown
----
-
-## Descripción General del Proyecto
-
-Este proyecto desarrolla una herramienta académica que permite **capturar, procesar y presentar** sesiones de terminal Linux como documentos web estructurados generados con Quarto.
-
-El flujo principal consiste en:
-
-1. Registrar comandos ejecutados en una shell de Linux junto con sus salidas.
-2. Procesar esa información mediante un programa en C.
-3. Generar automáticamente archivos `.qmd` con formato Markdown/Quarto.
-4. Renderizar el documento final como página web.
+    
+lang: es
 
 ---
 
-## Arquitectura del Sistema
+## Descripción de la Sesion
 
-```
-Shell Linux
-    │
-    │  (captura de comandos y salidas)
-    ▼
-generador.c / generador.h
-    │
-    │  (escritura automática de bloques .qmd)
-    ▼
-informacion.qmd
-    │
-    │  (quarto render)
-    ▼
-Página Web HTML
-```
-
-### Componentes principales
-
-| Archivo | Tipo | Descripción |
-|---|---|---|
-| 'sesion_Linux.txt'| Archivo de texto| Almacena una sesion de Linux |
-| 'archivo.h' | C Header | Definicion de la funcion de procesamiento |
-| 'archivo.h' | C Source | Logica de escritura de archivo 'sesion-Linux'|
-| `generador.h` | C Header | Definición de estructuras y prototipos |
-| `generador.c` | C Source | Lógica de escritura de archivos `.qmd` |
-| `template.qmd` | Quarto | Plantilla base del documento |
-| `informacion.qmd` | Quarto | Documento generado con la sesión capturada |
-| `_quarto.yml` | YAML | Configuración global del proyecto |
-
----
+{{DESCRIPCION}}
 
 ## Información del Entorno
 
-### Sistema Operativo
+- **Sistema:** Linux 6.8.0-111-generic x86_64
+- **Usuario:** loky
+- **Fecha de captura:** 01/06/2026 02:06:51
+- **Duración de sesión:** {{DURACION}}
+
+## Comandos Ejecutados
+
+### Comando #1
+
+| Campo    | Valor |
+|----------|-------|
+| Usuario  | `vianca` |
+| Tiempo   | 2 seg |
 
 ```bash
-uname -a
-```
-
-```
-Linux hostname 5.15.0-91-generic #101-Ubuntu SMP x86_64 GNU/Linux
-```
-
-### Versión de GCC
-
-```bash
-gcc --version
-```
-
-```
-gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
-```
-
-### Versión de Quarto
-
-```bash
-quarto --version
-```
-
-```
-1.4.553
+ls -la /var/log
 ```
 
 ---
 
-## Implementación en C
+### Comando #2
 
-### Archivo `generador.h`
+| Campo    | Valor |
+|----------|-------|
+| Usuario  | `admin` |
+| Tiempo   | 5 seg |
 
-```c
-#ifndef GENERADOR_H
-#define GENERADOR_H
-
-#include <stdio.h>
-#include <time.h>
-
-/* Metadatos del documento Quarto */
-typedef struct {
-    char titulo[256];
-    char autor[128];
-    char descripcion[1024];
-} MetadatosDoc;
-
-/* Entrada individual: comando + resultado */
-typedef struct {
-    char comando[512];
-    char resultado[2048];
-} EntradaComando;
-
-/* Prototipos */
-int escribir_encabezado(FILE *f, const MetadatosDoc *meta);
-int agregar_comando(FILE *f, const EntradaComando *entrada);
-int generar_qmd(const char *ruta_salida,
-                const MetadatosDoc *meta,
-                const EntradaComando *comandos,
-                int n_comandos);
-
-#endif /* GENERADOR_H */
-```
-
-### Archivo `generador.c`
-
-```c
-#include "generador.h"
-#include <string.h>
-
-int escribir_encabezado(FILE *f, const MetadatosDoc *meta) {
-    time_t ahora = time(NULL);
-    char fecha[64];
-    strftime(fecha, sizeof(fecha), "%Y-%m-%d", localtime(&ahora));
-
-    fprintf(f,
-        "---\n"
-        "title: \"%s\"\n"
-        "author: \"%s\"\n"
-        "date: \"%s\"\n"
-        "format:\n"
-        "  html:\n"
-        "    toc: true\n"
-        "    theme: united\n"
-        "    highlight-style: monokai\n"
-        "---\n\n",
-        meta->titulo, meta->autor, fecha
-    );
-
-    fprintf(f, "## Descripción\n\n%s\n\n", meta->descripcion);
-    fprintf(f, "## Sesión de Terminal\n\n");
-    return 0;
-}
-
-int agregar_comando(FILE *f, const EntradaComando *entrada) {
-    fprintf(f, "### Comando\n\n");
-    fprintf(f, "```bash\n%s\n```\n\n", entrada->comando);
-    fprintf(f, "**Salida:**\n\n");
-    fprintf(f, "```\n%s\n```\n\n", entrada->resultado);
-    return 0;
-}
-
-int generar_qmd(const char *ruta_salida,
-                const MetadatosDoc *meta,
-                const EntradaComando *comandos,
-                int n_comandos) {
-
-    FILE *f = fopen(ruta_salida, "w");
-    if (!f) return -1;
-
-    escribir_encabezado(f, meta);
-
-    for (int i = 0; i < n_comandos; i++) {
-        agregar_comando(f, &comandos[i]);
-    }
-
-    fclose(f);
-    return 0;
-}
+```bash
+grep -r "error" /var/log/syslog
 ```
 
 ---
 
-## Sesión de Terminal Capturada
+### Comando #3
 
-A continuación se presenta un ejemplo de sesión capturada y procesada por la herramienta:
-
-### Listar archivos del proyecto
-
-```bash
-ls -la
-```
-
-```
-total 32
-drwxr-xr-x 2 usuario usuario 4096 may 31 2025 .
-drwxr-xr-x 8 usuario usuario 4096 may 31 2025 ..
--rw-r--r-- 1 usuario usuario 1024 may 31 2025 generador.c
--rw-r--r-- 1 usuario usuario  512 may 31 2025 generador.h
--rw-r--r-- 1 usuario usuario 2048 may 31 2025 informacion.qmd
--rw-r--r-- 1 usuario usuario  256 may 31 2025 template.qmd
-```
-
-### Compilar el generador
+| Campo    | Valor |
+|----------|-------|
+| Usuario  | `vianca` |
+| Tiempo   | 4 seg |
 
 ```bash
-gcc -Wall -o generador main.c generador.c
-```
-
-```
-(sin errores de compilación)
-```
-
-### Ejecutar el generador
-
-```bash
-./generador
-```
-
-```
-[OK] Archivo informacion.qmd generado correctamente.
-```
-
-### Renderizar con Quarto
-
-```bash
-quarto render informacion.qmd
-```
-
-```
-[✓] Rendering: informacion.qmd → informacion.html
+gcc -o programa src/main.c
 ```
 
 ---
 
-## Validación
+### Comando #4
 
-### Verificación del archivo generado
-
-```bash
-
-head -20 informacion.qmd
-```
-
-```
----
-title: "Sesión de Terminal - 2025-05-31"
-author: "Grupo 2"
-date: "2025-05-31"
-format:
-  html:
-    toc: true
-    theme: united
----
-```
-
-### Comprobación de sintaxis YAML
+| Campo    | Valor |
+|----------|-------|
+| Usuario  | `root` |
+| Tiempo   | 3 seg |
 
 ```bash
-quarto check informacion.qmd
-```
-
-```
-[✓] YAML válido
-[✓] Formato HTML configurado correctamente
-[✓] Sin errores de renderizado
+systemctl restart nginx
 ```
 
 ---
 
-## Conclusiones
+### Comando #5
 
-- La herramienta logra capturar y estructurar sesiones de terminal de forma automática.
-- El programa en C genera archivos `.qmd` válidos que Quarto puede procesar sin errores.
-- El formato web resultante es claro, navegable y adecuado para presentaciones académicas.
-- El proyecto es extensible: se pueden agregar timestamps, códigos de salida, colores y más metadatos.
+| Campo    | Valor |
+|----------|-------|
+| Usuario  | `invitado` |
+| Tiempo   | 8 seg |
+
+```bash
+python3 src/analisis.py
+```
 
 ---
 
-## Referencias
 
-- [Documentación oficial de Quarto](https://quarto.org/docs/guide/)
-- [Guía de Markdown en Quarto](https://quarto.org/docs/authoring/markdown-basics.html)
-- [Manual de referencia de C — GNU](https://www.gnu.org/software/gnu-c-manual/)
+## Resumen
+
+- Total de comandos ejecutados: 5
+- Errores encontrados: {{TOTAL_ERRORES}}
