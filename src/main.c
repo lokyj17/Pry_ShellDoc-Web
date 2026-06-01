@@ -44,12 +44,19 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
 
+
+
+
+
     printf("\nIniciando Fase 5 (Renderizado de Quarto a HTML)...\n");
-    int resultado_render = system("quarto render ../quarto/informacion.qmd --to html && mv ../quarto/informacion.html ../docs/index.html");
+    int resultado_render = system("quarto render ../quarto/informacion.qmd --to html --embed-resources && mv ../quarto/informacion.html ../docs/index.html");
 
     if (resultado_render == 0) {
         printf("\n¡EJECUTADO CON ÉXITO!\n");
-        printf("Documento web generado en: ../quarto/informacion.html\n");
+        printf("Documento web generado en: ../docs/index.html\n"); // Corregimos la mentira
+        
+        // Traducimos la ruta para que Windows no se pierda
+        system("explorer.exe $(wslpath -w ../docs/index.html)"); 
     } else {
         fprintf(stderr, "\nEl programa corrió, pero Quarto falló al renderizar.\n");
         return EXIT_FAILURE;
