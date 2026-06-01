@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include "archivos.h"
@@ -27,7 +28,9 @@ int main(int argc, char *argv[]) {
 
     printf("\nLeyendo archivo desde: %s\n\n", ruta_sesion);
 
-    printf("\nIniciando Procesamiento Base...\n");
+    printf("Iniciando Procesamiento Base...\n");
+    printf("\nPID: %d, PPID: %d - Coordinando hilos y forks...\n", getpid(), getppid());
+    
     int res_base = procesarArchivoSesion(ruta_sesion);
     if (!res_base) {
         fprintf(stderr, "ERROR: Falla crítica en el procesamiento base.\n");
