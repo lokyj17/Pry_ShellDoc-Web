@@ -27,7 +27,7 @@ Este reporte analiza los comandos ejecutados en la sesión de Linux, revisando l
 
 - **Sistema:** Linux 6.8.0-117-generic x86_64
 - **Usuario:** loky
-- **Fecha de captura:** 02/06/2026 13:13:00
+- **Fecha de captura:** 02/06/2026 13:28:47
 - **Duración de sesión:** 15 minutos
 
 ## Comandos Ejecutados
@@ -40,7 +40,7 @@ Este reporte analiza los comandos ejecutados en la sesión de Linux, revisando l
 | Tiempo   | 1 seg |
 
 ```bash
-ps
+sleep 1000&
 ```
 
 ---
@@ -53,7 +53,7 @@ ps
 | Tiempo   | 1 seg |
 
 ```bash
-ls
+sleep 100 &
 ```
 
 ---
@@ -63,10 +63,10 @@ ls
 | Campo    | Valor |
 |----------|-------|
 | Usuario  | `loky` |
-| Tiempo   | 4 seg |
+| Tiempo   | 1 seg |
 
 ```bash
-top
+sp 
 ```
 
 ---
@@ -76,10 +76,10 @@ top
 | Campo    | Valor |
 |----------|-------|
 | Usuario  | `loky` |
-| Tiempo   | 4 seg |
+| Tiempo   | 1 seg |
 
 ```bash
-htop
+ps -l
 ```
 
 ---
@@ -105,7 +105,20 @@ ps -la
 | Tiempo   | 1 seg |
 
 ```bash
-exxit
+ls
+```
+
+---
+
+### Comando #7
+
+| Campo    | Valor |
+|----------|-------|
+| Usuario  | `loky` |
+| Tiempo   | 2 seg |
+
+```bash
+top
 ```
 
 ---
@@ -113,10 +126,10 @@ exxit
 
 ## Control de Procesos (Módulo fork)
 
-- **PID del Proceso:** `2538`
+- **PID del Proceso:** `3276`
 - **PPID del Padre:** `1237`
 
 ## Resumen
 
-- Total de comandos ejecutados: 6
+- Total de comandos ejecutados: 7
 - Errores encontrados: 0
