@@ -25,9 +25,9 @@ Este reporte analiza los comandos ejecutados en la sesión de Linux, revisando l
 
 ## Información del Entorno
 
-- **Sistema:** Linux 6.6.114.1-microsoft-standard-WSL2 x86_64
-- **Usuario:** agente
-- **Fecha de captura:** 01/06/2026 20:40:59
+- **Sistema:** Linux 6.8.0-111-generic x86_64
+- **Usuario:** loky
+- **Fecha de captura:** 02/06/2026 02:42:55
 - **Duración de sesión:** 15 minutos
 
 ## Comandos Ejecutados
@@ -36,11 +36,11 @@ Este reporte analiza los comandos ejecutados en la sesión de Linux, revisando l
 
 | Campo    | Valor |
 |----------|-------|
-| Usuario  | `vianca` |
-| Tiempo   | 2 seg |
+| Usuario  | `loky` |
+| Tiempo   | 1 seg |
 
 ```bash
-ls -la /var/log
+ls -la
 ```
 
 ---
@@ -49,11 +49,11 @@ ls -la /var/log
 
 | Campo    | Valor |
 |----------|-------|
-| Usuario  | `admin` |
-| Tiempo   | 5 seg |
+| Usuario  | `loky` |
+| Tiempo   | 1 seg |
 
 ```bash
-grep -r "error" /var/log/syslog
+ll
 ```
 
 ---
@@ -62,11 +62,11 @@ grep -r "error" /var/log/syslog
 
 | Campo    | Valor |
 |----------|-------|
-| Usuario  | `vianca` |
-| Tiempo   | 4 seg |
+| Usuario  | `loky` |
+| Tiempo   | 1 seg |
 
 ```bash
-gcc -o programa src/main.c
+ls
 ```
 
 ---
@@ -75,11 +75,11 @@ gcc -o programa src/main.c
 
 | Campo    | Valor |
 |----------|-------|
-| Usuario  | `root` |
-| Tiempo   | 3 seg |
+| Usuario  | `loky` |
+| Tiempo   | 1 seg |
 
 ```bash
-systemctl restart nginx
+ps -l
 ```
 
 ---
@@ -88,15 +88,20 @@ systemctl restart nginx
 
 | Campo    | Valor |
 |----------|-------|
-| Usuario  | `invitado` |
-| Tiempo   | 8 seg |
+| Usuario  | `loky` |
+| Tiempo   | 6 seg |
 
 ```bash
-python3 src/analisis.py
+top
 ```
 
 ---
 
+
+## Control de Procesos (Módulo fork)
+
+- **PID del Proceso:** `2808`
+- **PPID del Padre:** `1319`
 
 ## Resumen
 
