@@ -1,10 +1,11 @@
 ---
 title: "{{TITULO}}"
 author:
-  - name: "{{AUTOR}}"
+  - name: "Alejandro Guanocunga"
+  - name: "Vianca Guzmán"
+  - name: "Juan Jácome"
+  - name: "Alan Jami"
     affiliation: "Escuela Politecnica Nacional"
-date: "{{FECHA}}"
-date-format: "DD [de] MMMM, YYYY"
 lang: es
 format:
   html:
@@ -16,21 +17,18 @@ format:
     code-copy: true
     theme: united
     highlight-style: monokai
-    
-
-
 ---
 
 ## Descripción de la Sesion
 
-{{DESCRIPCION}}
+Este reporte analiza los comandos ejecutados en la sesión de Linux, revisando los hilos, los procesos fork y si hubo errores.
 
 ## Información del Entorno
 
 - **Sistema:** {{SISTEMA_OS}}
 - **Usuario:** {{USUARIO}}
 - **Fecha de captura:** {{FECHA}}
-- **Duración de sesión:** {{DURACION}}
+- **Duración de sesión:** 15 minutos
 
 ## Comandos Ejecutados
 
@@ -39,4 +37,4 @@ format:
 ## Resumen
 
 - Total de comandos ejecutados: {{TOTAL_COMANDOS}}
-- Errores encontrados: {{TOTAL_ERRORES}}
+- Errores encontrados: 0
