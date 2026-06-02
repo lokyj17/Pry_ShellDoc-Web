@@ -90,7 +90,7 @@ void obtenerMetadatos(MetadatosDoc *meta, const char *titulo, const char *autor)
     strncpy(meta->total_errores, "0",     sizeof(meta->total_errores) - 1);
 
 }
-* ============================================================
+/* ============================================================
    calcularEstadisticas()
    Suma los tiempos de ejecucion, detecta errores (tiempo==0)
    y genera la descripcion automatica de la sesion.
